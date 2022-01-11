@@ -1,15 +1,21 @@
 package com.codingtest.level1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //같은숫자는 싫어
 public class HateSameNumber {
-    public class Solution {
-        public int[] solution(int []arr) {
-            int[] answer = {};
-
-            // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-            System.out.println("Hello Java");
-
-            return answer;
+    public int[] solution(int []arr) {
+        List<Integer> list= new ArrayList<>();
+        int temp=-1;
+        for (int i = 0; i < arr.length; i++){
+            if(temp!=arr[i]){
+                list.add(arr[i]);
+            }
+            temp=arr[i];
         }
+
+        return list.stream().mapToInt(i->i).toArray();
+    }
 
 }
