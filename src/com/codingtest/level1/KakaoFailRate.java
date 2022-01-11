@@ -1,10 +1,9 @@
 package com.codingtest.level1;
+//실패율
 
-import java.sql.Array;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class FailRate {
+public class KakaoFailRate {
     public static int[] solution(int N, int[] stages) {
 //        int max=0;
 //        int min=9999;

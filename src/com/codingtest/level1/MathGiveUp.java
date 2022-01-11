@@ -2,7 +2,7 @@ package com.codingtest.level1;
 
 import java.util.*;
 import java.util.stream.Stream;
-
+//수포자
 public class MathGiveUp {
 
     public ArrayList<Integer> rand(int leng) {

@@ -1,5 +1,5 @@
 package com.codingtest.level1;
-
+//소수구하기
 public class PrimeNum {
 
     public static void main(String[] args) {

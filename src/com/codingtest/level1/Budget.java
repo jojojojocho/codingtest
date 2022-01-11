@@ -1,5 +1,7 @@
 package com.codingtest.level1;
 
+//예산
+
 public class Budget {
 
     public int solution(int[] d, int budget) {

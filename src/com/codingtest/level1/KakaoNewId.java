@@ -1,7 +1,7 @@
 package com.codingtest.level1;
 
-
-public class NewId {
+//카카오 아이디추천
+public class KakaoNewId {
 
 
     public static String solution(String new_id) {

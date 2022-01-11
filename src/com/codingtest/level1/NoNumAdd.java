@@ -2,7 +2,7 @@ package com.codingtest.level1;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
-
+//없는숫자더하기
 public class NoNumAdd {
     public static int solution(int[] numbers) {
         int[] arr = {1,2,3,4,5,6,7,8,9};

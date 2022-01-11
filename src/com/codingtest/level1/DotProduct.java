@@ -1,4 +1,5 @@
 package com.codingtest.level1;
+//내적
 
 public class DotProduct {
     public long solution(int[] a, int[] b) {

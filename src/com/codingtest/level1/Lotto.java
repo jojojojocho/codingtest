@@ -1,7 +1,7 @@
 package com.codingtest.level1;
 
 import java.util.Arrays;
-
+//로또
 public class Lotto {
     public static int[] solution(int[] lottos, int[] win_nums) {
         int zeroCnt = 0;

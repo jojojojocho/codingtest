@@ -1,5 +1,5 @@
 package com.codingtest.level1;
-
+//가운데 글자
 public class midString {
     public String solution(String s) {
         int answer = 0;
