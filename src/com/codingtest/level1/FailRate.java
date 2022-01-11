@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class FailRate {
-    public int[] solution(int N, int[] stages) {
+    public static int[] solution(int N, int[] stages) {
 //        int max=0;
 //        int min=9999;
 //        for (int i =0; i<stages.length;i++){
@@ -16,43 +16,55 @@ public class FailRate {
         for (int i = 1; i <= N; i++) {
             int cntOnlyMe = 0;
             int cntGreaterThenMe = 0;
+            int maxCnt = 0;
+            double temp;
             for (int j = 0; j < stages.length; j++) {
                 if (i == stages[j]) cntOnlyMe++;
-                if (i < stages[j]) cntGreaterThenMe++;
+                else if (i < stages[j]) cntGreaterThenMe++;
+                if (i==N+1) maxCnt++;
             }
-            int failRate;
-            try {
-                failRate = (int) (cntOnlyMe * 1000 / (cntOnlyMe + cntGreaterThenMe) * 1000);
-            }catch (Exception e){
-                failRate=0;
+            double failRate;
+            if(cntOnlyMe==0 ) {failRate=0;}
+            else if(cntGreaterThenMe==0 && cntOnlyMe==0) {failRate=0;}
+            else{
+                failRate =(double) (cntOnlyMe) / (cntOnlyMe + cntGreaterThenMe+maxCnt);
+
             }
+
+
             store.put(i, failRate);
+
         }
 
-        List<Map.Entry<Integer, Integer>> entryList = new LinkedList<>(store.entrySet());
-        entryList.sort(new Comparator<Map.Entry<Integer, Integer>>() {
-            @Override
-            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
-                return (int) (o2.getValue() - o1.getValue());
+        List<Map.Entry<Integer, Double>> entryList = new ArrayList<>(store.entrySet());
+        for (int i=0; i<store.size()-1;i++){
+            for (int j=i+1; j< store.size();j++){
+                if(entryList.get(i).getValue()<entryList.get(j).getValue()){
+                    Map.Entry<Integer, Double> temp;
+                    temp=entryList.get(i);
+                    entryList.set(i,entryList.get(j));
+                    entryList.set(j,temp);
+                }else if(entryList.get(i).getValue()>entryList.get(j).getValue()) {
+
+                }else{
+                    if(entryList.get(i).getKey() >entryList.get(j).getKey()){
+                        Map.Entry<Integer, Double> temp;
+                        temp=entryList.get(i);
+                        entryList.set(i,entryList.get(j));
+                        entryList.set(j,temp);
+                    }
+                }
             }
-        });
+        }
 
 
         List<Integer> numList = new ArrayList<>();
-        for (Map.Entry<Integer, Integer> entry : entryList) {
+        for (Map.Entry<Integer, Double> entry : entryList) {
             numList.add(entry.getKey());
         }
 
         int[] answer = numList.stream().mapToInt(i -> i).toArray();
         return answer;
-    }
-
-    public static void main(String[] args) {
-        FailRate failRate = new FailRate();
-        int[] arr=failRate.solution(5, new int[]{1,2,3,4,4});
-        for (int i = 0; i<arr.length;i++){
-            System.out.println(arr[i]);
-        }
     }
 
 }
