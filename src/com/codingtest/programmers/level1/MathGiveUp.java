@@ -1,7 +1,7 @@
-package com.codingtest.level1;
+package com.codingtest.programmers.level1;
 
 import java.util.*;
-import java.util.stream.Stream;
+
 //수포자
 public class MathGiveUp {
 

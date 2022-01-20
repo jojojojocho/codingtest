@@ -1,4 +1,4 @@
-package com.codingtest.level1;
+package com.codingtest.programmers.level1;
 //양수음수더하기
 public class NegPosAdd {
     public int solution(int[] absolutes, boolean[] signs) {

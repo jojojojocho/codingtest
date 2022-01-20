@@ -1,7 +1,7 @@
-package com.codingtest.level1;
+package com.codingtest.programmers.level1;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
+
 //없는숫자더하기
 public class NoNumAdd {
     public static int solution(int[] numbers) {

@@ -1,4 +1,4 @@
-package com.codingtest.level1;
+package com.codingtest.programmers.level1;
 //가운데 글자
 public class midString {
     public String solution(String s) {
