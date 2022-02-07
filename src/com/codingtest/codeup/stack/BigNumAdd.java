@@ -1,4 +1,4 @@
-package com.codingtest.codeup.Stack;
+package com.codingtest.codeup.stack;
 
 import java.util.*;
 //3021 : 큰 수 덧셈

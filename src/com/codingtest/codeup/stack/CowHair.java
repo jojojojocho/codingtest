@@ -1,9 +1,8 @@
-package com.codingtest.codeup.Stack;
+package com.codingtest.codeup.stack;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Stack;
 
 //3130 : 소들의 헤어스타일
 public class CowHair {
