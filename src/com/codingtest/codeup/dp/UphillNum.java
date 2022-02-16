@@ -1,45 +1,50 @@
 package com.codingtest.codeup.dp;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.math.BigInteger;
+import java.util.*;
 
 //3801 : 오르막 수
 public class UphillNum {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
         int n = scanner.nextInt();
-        int[] ints = {0,0,0,0,0,0,0,0,0,0};
-        int sum=1; //0일 때 1
-        for (int i = 0; i<n; i++){
+        BigInteger[] before = new BigInteger[10];
+        BigInteger[] after = new BigInteger[10];
+        for(int i=0;i<10;i++){
+            before[i]= BigInteger.valueOf(0);
+            after[i]= BigInteger.valueOf(0);
+        }
+        BigInteger sum = BigInteger.valueOf(1); //0일 때 1
+        BigInteger beforeSum;
 
-            for(int j=0; j<10; j++) {
-                if(j==0)
-                    ints[j]=sum;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 10; j++) {
+                if(j==0) after[j]=sum;
 
                 else {
-                    int temp = ints[j];
-                    ints[j] = sum - temp;
-                    sum = sum - temp;
+                    after[j] = sum.subtract(before[j-1]);
+                    sum=sum.subtract(before[j-1]);
                 }
+
             }
 
-            int tem=0;
-
-            for (int anInt : ints) {
-                tem+=anInt;
+            BigInteger tem = BigInteger.valueOf(0);
+            for (BigInteger anInt : after) {
+                tem=tem.add(anInt);
             }
-            sum=tem;
+
+            sum = tem;
+            before= Arrays.copyOf(after, after.length);
+
         }
-
-        System.out.println(sum);
-
-
+        beforeSum=sum.remainder(BigInteger.valueOf(10007));
+        System.out.println(beforeSum);
     }
 
+
 }
+
