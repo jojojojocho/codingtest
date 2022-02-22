@@ -1,37 +1,63 @@
 package com.codingtest.programmersschool.week1;
 
-public class test {
+import java.util.*;
 
-    public static int solution(int n, int[] stations, int w) {
-        int rightIndex = 0;
-        int leftIndex = 0;
-        int value = 0;
-        int range = 2 * w + 1;
-        int count = 0;
-        for (int station : stations) {
+public class test{
 
-            int index = station - 1;
-            leftIndex = Math.max(index - 1, 0);
-            value = Math.max(leftIndex - rightIndex, 0);
-            count += value / range;
-
-            if (value % range != 0)
-                count++;
-
-            rightIndex = index + w + 1;
+    public static int solution(int[] budgets, int M) {
+        int answer = 0;
+        int max=-1, sum=0;
+        for(int i=0;i<budgets.length;i++)	{
+            if(budgets[i]>max) {
+                max=budgets[i];
+            }
+            sum=sum+budgets[i];
         }
+        if(sum<=M)	return max;
 
-        int lastSub = Math.max(n - rightIndex, 0);
-        count += lastSub / range;
+        int avg = sum/budgets.length;
+        boolean lastState = (func(budgets, avg)>M ? false : true);
 
-        if (lastSub % range != 0)
-            count++;
-
-        return count;
+        int fResult = -1;
+        while(true) {
+            fResult = func(budgets, avg);
+            if(fResult>M) {	//넘으면 현재 상태는 false
+                if(lastState!=false) {
+                    answer=avg-1;
+                    break;
+                }
+                avg--;
+            }else {	//안넘어서 현재 상태는 true
+                if(lastState!=true) {
+                    answer=avg;
+                    break;
+                }
+                avg++;
+            }
+        }
+        return answer;
     }
 
-    public static void main(String[] args) {
-        int solution = solution(16, new int[]{9}, 2);
-        System.out.println("solution = " + solution);
+    //상한가 max를 고려한 총 예산 배정액
+    public static int func(int[] budgets, int max) {
+        int sum=0;
+        for(int i=0;i<budgets.length;i++) {
+            if(budgets[i]>max) {
+                sum=sum+max;
+            }else {
+                sum=sum+budgets[i];
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int M=sc.nextInt();
+        int[] budgets=new int[M];
+        for ( int i =0; i<M; i++){
+            budgets[i]=sc.nextInt();
+        }
+        System.out.println(solution(budgets,M));
     }
 }
