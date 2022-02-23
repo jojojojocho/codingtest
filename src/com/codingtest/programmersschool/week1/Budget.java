@@ -5,62 +5,56 @@ import java.util.*;
 
 public class Budget {
 
-    public static int solution(int[] budgets, int M) {
-        Arrays.sort(budgets);
-        int sum = M;
-        int avg = sum / budgets.length;
-        int index = 0;
+    public static int solution(int[] budgets, int M, int maxBudget) {
 
-        for (int i = 0; i < budgets.length; i++) {
-            if (avg < budgets[i]) {
-                index = i;
+
+        Arrays.sort(budgets);
+        if(Arrays.stream(budgets).sum() < maxBudget){
+            return budgets[budgets.length-1];
+        }
+        int max = budgets[M - 1];
+        int min = 0;
+
+        while (true) {
+
+            int avg = (max + min) / 2;
+            int sum=0;
+            int cnt=0;
+            for (int i = 0; i < M; i++) {
+                if(budgets[i] <= avg){
+                    sum+=budgets[i];
+                }else{
+                    sum+=avg;
+                    cnt++;
+                }
+            }
+            if (sum>maxBudget){
+                max=avg-1;
+            }else if(sum<maxBudget){
+                min=avg+1;
+            }else {
+                return avg;
+            }
+
+            if(max==min){
+                return max;
             }
         }
-        int biggerCnt = budgets.length - index;
-        for (int i = 0; i < index; i++) {
-            sum -= budgets[i];
-        }
-        return sum / biggerCnt;
-
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        int cnt = sc.nextInt();
-        int[] budgets = new int[cnt];
-        for (int i = 0; i < cnt; i++) {
+        int M = sc.nextInt();
+        int[] budgets = new int[M];
+        for (int i = 0; i < M; i++) {
             budgets[i] = sc.nextInt();
         }
-        int M = sc.nextInt();
-        int lastM = M;
+        int maxBudget = sc.nextInt();
+        int solution = solution(budgets, M, maxBudget);
+        System.out.println(solution);
 
 
-        Arrays.sort(budgets);
-        int sum = Arrays.stream(budgets).sum();
-        int avg = sum / budgets.length;
-        int index = 0;
-        int frontSum = 0;
-        for (int i = 0; i < budgets.length; i++) {
-            if (avg < budgets[i]) {
-                index = i;
-                break;
-            }
-            frontSum += budgets[i];
-        }
-        int biggerCnt = budgets.length - index;
-        for (int i = 0; i < index; i++) {
-            M -= budgets[i];
-        }
-        int finalAvg = M / biggerCnt;
-        while (true) {
-            if (frontSum + (finalAvg * biggerCnt) >= lastM){
-                finalAvg++;
-            }else{
-                break;
-            };
-        }
-        System.out.println(finalAvg);
     }
 
 

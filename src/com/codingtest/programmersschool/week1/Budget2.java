@@ -11,20 +11,18 @@ public class Budget2 {
 
         for (int i = idx; i < n; i = idx) {
 
-            if (wIdx < stations.length) {
+            if (wIdx < stations.length && idx >= stations[wIdx] - 1 - w) {
 
-                if (idx >= stations[wIdx] - 1 - w) {
 
-                    idx = stations[wIdx] - 1 + w;
-                    wIdx++;
-                    idx++;
-                    continue;
-                }
+                idx = stations[wIdx] - 1 + w;
+                wIdx++;
+                idx++;
+                continue;
+
             }
 
-            idx += w;
+            idx += 2*w;
             cnt++;
-            idx += w;
             idx++;
 
         }
