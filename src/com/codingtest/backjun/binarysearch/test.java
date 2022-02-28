@@ -35,18 +35,23 @@ public class test {
 //            System.out.println("data1");
 //        }
 
+//        String s = "09:00";
+//        String s1= "09:10";
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
+//        Date format1 = simpleDateFormat.parse(s);
+//        Date format2 = simpleDateFormat.parse(s1);
+//
+//        long s2 = format1.getTime()-format2.getTime();
+//
+//        Date date = new Date(s2);
+//        String format = simpleDateFormat.format(date);
+//        System.out.println("format = " + format);
+
+
         String s = "09:00";
-        String s1= "09:10";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
-        Date format1 = simpleDateFormat.parse(s);
-        Date format2 = simpleDateFormat.parse(s1);
-
-        long s2 = format1.getTime()-format2.getTime();
-
-        Date date = new Date(s2);
-        String format = simpleDateFormat.format(date);
-        System.out.println("format = " + format);
-
+        String s1 = "10:01";
+        int i = s.compareTo(s1);
+        System.out.println("i = " + i);
 
 
     }
