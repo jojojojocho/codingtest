@@ -15,14 +15,15 @@ public class DfsBfs2 {
 
         while (!stack.isEmpty()) {
             row = stack.pop();
-            visited[row]=1;
-            System.out.print( row+1 + " ");
 
-            for (int i = 0; i <node ; i++) {
+            if(visited[row]==0)
+                System.out.print( row+1 + " ");
+            visited[row]=1;
+
+            for (int i = node-1; i >=0 ; i--) {
                 if (intTable[row][i] == 1 && visited[i] == 0) {
                     stack.push(i);
-                    visited[i] = 1;
-                    break;
+
                 }
             }
 
@@ -62,8 +63,7 @@ public class DfsBfs2 {
         int[][] intTable = new int[node][node];
         int[] visited = new int[node];
 
-        int[][] intTablebfs = intTable.clone();
-        int[] visitedbfs = visited.clone();
+
 
         for (int i = 0; i < edge; i++) {
             stringTokenizer = new StringTokenizer(br.readLine());
@@ -73,6 +73,8 @@ public class DfsBfs2 {
             intTable[integer - 1][integer1 - 1] = 1;
             intTable[integer1 - 1][integer - 1] = 1;
         }
+        int[][] intTablebfs = intTable.clone();
+        int[] visitedbfs = visited.clone();
         dfs(node, edge, start, intTable, visited);
         System.out.println();
         bfs(node, edge, start, intTablebfs, visitedbfs);
