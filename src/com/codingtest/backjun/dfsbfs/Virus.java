@@ -6,12 +6,34 @@ import java.util.*;
 
 public class Virus {
 
+    //bfs
+    public static int bfs(int node,int edge, int[][] intTable, int[] visited){
+        Queue<Integer> que= new LinkedList<>();
+        int row = 0;
+        que.offer(0);
+        int cnt =0;
+
+        while (!que.isEmpty()){
+            for (int i=0; i<node; i++){
+                if(intTable[row][i] ==1 && visited[i] ==0){
+                    que.offer(i);
+                    visited[i]=1;
+                    cnt++;
+                }
+            }
+            row=que.poll();
+        }
+
+        return cnt-1;
+    }
+
     //dfs
     public static int dfs(int node, int edge, int[][] intTable, int[] visited ){
         int row= 0;
         Stack<Integer> stack = new Stack<>();
         stack.push(0);
         int cnt = 0;
+
         while (!stack.isEmpty()) {
             for (int i = 0; i < node; i++) {
                 if (intTable[row][i] == 1 && visited[i] == 0) {
@@ -33,6 +55,7 @@ public class Virus {
 
         int node = Integer.parseInt(br.readLine());
         int edge = Integer.parseInt(br.readLine());
+
         int[][] intTable= new int[node][node];
         int[] visited = new int[node];
 
@@ -42,12 +65,15 @@ public class Virus {
             StringTokenizer stringTokenizer = new StringTokenizer(br.readLine());
             int integer = Integer.parseInt(stringTokenizer.nextToken());
             int integer1 = Integer.parseInt(stringTokenizer.nextToken());
+
             intTable[integer-1][integer1-1] = 1;
             intTable[integer1-1][integer-1] = 1;
-
         }
-        int dfs = dfs(node, edge, intTable, visited);
-        System.out.println(dfs);
+
+        //int dfs = dfs(node, edge, intTable, visited);
+//        System.out.println(dfs);
+        int bfs = dfs(node, edge, intTable, visited);
+        System.out.println(bfs);
 
 
     }
