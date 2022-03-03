@@ -1,17 +1,9 @@
 package com.codingtest.backjun.binarysearch;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.Timer;
+import java.time.*;
+import java.time.LocalDate;
 
 public class test {
     public static void main(String[] args) throws IOException, ParseException {
@@ -48,12 +40,13 @@ public class test {
 //        System.out.println("format = " + format);
 
 
-        String s = "09:00";
-        String s1 = "10:01";
-        int i = s.compareTo(s1);
-        System.out.println("i = " + i);
+//        String s = "09:00";
+//        String s1 = "10:01";
+//        int i = s.compareTo(s1);
+//        System.out.println("i = " + i);
 
-
+        int monthValue = LocalDate.now().getMonthValue();
+        System.out.println("year = " + monthValue);
     }
 
 }
