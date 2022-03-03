@@ -1,4 +1,4 @@
-package com.codingtest.programmersschool.week2;
+package com.codingtest.programmersschool.week3;
 
 public class BracketNum {
     static int count;
