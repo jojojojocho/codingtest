@@ -6,61 +6,87 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class GameMap {
-    public static int solution(int[][] maps) {
-        int x = 0;
-        int y = 0;
-        int rowLength = maps.length;
-        int colLength = maps[0].length;
-        int row = 0;
-        int cnt = 1;
-        Stack<Integer> xq = new Stack<>();
-        Stack<Integer> yq = new Stack<>();
-        ArrayList<Integer> integer = new ArrayList<>();
+    class Pos {
+        int x;
+        int y;
+        int cnt;
 
-        if (maps[rowLength - 2][colLength - 1] == 0 && maps[rowLength - 1][colLength - 2] == 0) return -1;
+        public Pos(int x, int y, int cnt) {
+            this.x = x;
+            this.y = y;
+            this.cnt = cnt;
+        }
 
-        while (x < rowLength || y < colLength) {
+        public int getX() {
+            return x;
+        }
 
-            if (y<colLength-1&&maps[x][y + 1] == 1) { //오른쪽
-                xq.push(x);
-                yq.push(y);
-                maps[x][y] = 0;
-                cnt++;
-                y++;
-            } else if (maps[x + 1][y] == 1) { // 아래쪽
-                xq.push(x);
-                yq.push(y);
-                maps[x][y] = 0;
-                cnt++;
-                x++;
-            } else if (maps[x][y - 1] == 1) { //위쪽
-                xq.push(x);
-                yq.push(y);
-                maps[x][y] = 0;
-                cnt++;
-                y--;
+        public int getY() {
+            return y;
+        }
 
-            } else if (maps[x - 1][y] == 1) { // 왼쪽
-                xq.push(x);
-                yq.push(y);
+        public int getCnt() {
+            return cnt;
+        }
+    }
+
+    public int solution(int[][] maps) {
+        final int X = maps.length;
+        final int Y = maps[0].length;
+
+
+        Queue<Pos> posQueue = new LinkedList<>();
+        posQueue.offer(new Pos(X - 1, Y - 1, 1));
+        int min = Integer.MAX_VALUE;
+        int[][] visited = new int[maps.length][maps[0].length];
+//        visited[X - 1][Y - 1]=1;
+
+        while (!posQueue.isEmpty()) {
+
+            Pos posObj = posQueue.poll();
+            int x = posObj.getX();
+            int y = posObj.getY();
+            int cnt = posObj.getCnt();
+
+//            System.out.println("x :" + (x+1) + " y : " + (y+1)+ " cnt :" + cnt);
+            if(visited[x][y]!=1) {
+                //왼쪽
+                if (y - 1 >= 0 && maps[x][y - 1] == 1)
+                    posQueue.offer(new Pos(x, y - 1, cnt + 1));
+
+                //위쪽
+                if (x - 1 >= 0 && maps[x - 1][y] == 1)
+                    posQueue.offer(new Pos(x - 1, y, cnt + 1));
+
+                //아래쪽
+                if (x + 1 < X && maps[x + 1][y] == 1)
+                    posQueue.offer(new Pos(x + 1, y, cnt + 1));
+
+                //오른쪽
+                if (y + 1 < Y && maps[x][y + 1] == 1)
+                    posQueue.offer(new Pos(x, y + 1, cnt + 1));
+
+
                 maps[x][y] = 0;
-                cnt++;
-                x--;
-            } else {                         //다 막혔을때
-                maps[x][y] = 0;
-                x = xq.pop();
-                y = yq.pop();
-                maps[x][y] = 1;
-                cnt--;
+                visited[x][y]=1;
             }
 
-
+            if (posObj.getX() == 0 && posObj.getY() == 0) {
+                min = Math.min(min, posObj.cnt);
+            }
         }
-        return cnt;
+
+        if (min != Integer.MAX_VALUE)
+            return min;
+
+        else
+            return -1;
+
     }
 
     public static void main(String[] args) {
-        int solution = solution(new int[][]{{1, 0, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 1, 1}, {1, 1, 1, 0, 1}, {0, 0, 0, 0, 1}});
+        GameMap gameMap = new GameMap();
+        int solution = gameMap.solution(new int[][]{{1, 0, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 1, 1}, {1, 1, 1, 0, 1}, {0, 0, 0, 0, 1}});
         System.out.println(solution);
     }
 }
