@@ -15,11 +15,10 @@ public class RGB {
         int green =1;
         int blue=2;
         if (n == 1){
-            dp[n-1][color]=cost[n-1
-                    ][color];
+            dp[n-1][color]=cost[n-1][color];
         }
 
-        if (dp[n-1][color] == 0){
+        if (dp[n-1][color] == 0){ //empty dp가 비어있으면
             if (color==red){
                 dp[n-1][red]=Math.min(recursion(n-1,1,cost,dp),recursion(n-1,2,cost,dp))+cost[n-1][red];
             }
@@ -50,7 +49,9 @@ public class RGB {
 
 
         int [][] emptyDp =new int [n][3];
-        System.out.println(Math.min(Math.min(recursion(n,0,dp,emptyDp),recursion(n,1,dp,emptyDp)), recursion(n,2,dp,emptyDp)  ));
+        System.out.println(Math.min(
+                Math.min(recursion(n,0,dp,emptyDp),recursion(n,1,dp,emptyDp)),
+                recursion(n,2,dp,emptyDp)  ));
 
 
 
