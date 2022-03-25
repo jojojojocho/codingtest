@@ -1,6 +1,8 @@
 package com.codingtest.programmers.level3;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -8,26 +10,40 @@ import java.util.PriorityQueue;
 public class Immigration {
 
     public long solution(int n, int[] times) {
-        int start = 0;
-        int end = times[0]*n;
-        int sum = 0;
-        int i=0;
-        for (int time : times) {
-             i= time / end;
-            sum+=i;
-        }
-        if(sum>n){
-            end=(start+end)/2-1;
-        }else if(sum==n){
-        }else{
+        //오름차 정렬
+        Arrays.sort(times);
 
-        }
+        //최소
+        long start = 0;
 
+        //최대
+        long end = (long) times[times.length - 1] * n;
+
+        long mid=0;
+        long answer=0;
+
+        //탐색
+        while(start<=end){
+            long sum = 0;
+            //가운데
+            mid= (start+end) / 2;
+
+            for (long time : times) {
+                sum+= mid / time;
+            }
+            if(sum < n) {
+                start = mid + 1;
+            }else  {
+                end=mid-1;
+                answer=mid;
+            }
+        }
+        return answer;
     }
 
     public static void main(String[] args) {
         Immigration immigration = new Immigration();
-        long solution = immigration.solution(6, new int[]{7, 10});
+        long solution = immigration.solution(8, new int[]{1,9});
         System.out.println(solution);
     }
 }
