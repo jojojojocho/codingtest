@@ -2,47 +2,36 @@ package com.codingtest.programmers.level3;
 
 public class Sticker {
 
-    public long search (int j, int[] sticker ){
-        boolean eval;
-        if(j==0){
-            eval=true;
-        }else{
-            eval=false;
-        }
-        long sum=0;
-        for(int i=j ; i<sticker.length; i = i){
-//            if()
-
-        }
-        return sum;
-    }
 
     public long solution(int[] sticker) {
-        int[] dp = new int[sticker.length];
+        int answer = 0;
 
-        if(sticker.length%2>0){//홀수
-            if(sticker[0] > sticker[sticker.length-1]){ //맨앞이 더 클때
-                long startZeroOddFirstBig = search(0, sticker);
-                long startOneOdd = search(1, sticker);
-                return Math.max(startZeroOddFirstBig, startOneOdd);
+        int len = sticker.length;
 
-            }else {// 맨 뒤가 더 클 때
-                long startZeroOddLastBig = search(0, sticker);
-                long startOneOdd = search(1, sticker);
-                return Math.max(startZeroOddLastBig, startOneOdd);
-            }
+        if (len == 1) return sticker[0];
 
-        }else{//짝수
-            long startZeroPair = search(0, sticker);
-            long startOnePair = search(1, sticker);
-            return Math.max(startOnePair,startZeroPair);
+        int[] dp1 = new int[len];
+        int[] dp2 = new int[len];
 
-        }
+        //첫번째 스티커를 떼는 방법
+        dp1[0] = sticker[0];
+        dp1[1] = sticker[0];
+        for (int i = 2; i < len-1;i++) dp1[i] = Math.max(dp1[i-1],dp1[i-2] + sticker[i]);
+
+
+        //첫번째 스티커를 뗴지 않는 방법
+        dp2[0] = 0;
+        dp2[1] = sticker[1];
+        for (int i = 2; i < len; i++) dp2[i] = Math.max(dp2[i-1],dp2[i-2] + sticker[i]);
+
+        answer = Math.max(dp1[len-2],dp2[len-1]);
+
+        return answer;
     }
 
     public static void main(String[] args) {
         Sticker sticker = new Sticker();
-        long solution = sticker.solution(new int[]{14, 2 ,5, 1, 2, 9, 1});
+        long solution = sticker.solution(new int[]{14, 6,5,11,23,9,2,10});
         System.out.println(solution);
     }
 }
