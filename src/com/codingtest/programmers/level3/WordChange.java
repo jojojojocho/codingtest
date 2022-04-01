@@ -2,6 +2,7 @@ package com.codingtest.programmers.level3;
 
 import java.util.Arrays;
 
+//단어 변환
 public class WordChange {
     public int solution(String begin, String target, String[] words) {
 

@@ -1,5 +1,7 @@
 package com.codingtest.programmers.level3;
 
+//스티커모으기
+
 public class Sticker {
 
 
