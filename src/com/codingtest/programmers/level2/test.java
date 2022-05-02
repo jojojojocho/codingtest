@@ -9,9 +9,10 @@ public class test {
         }
     }
     public static void main(String[] args) {
-        test test = new test();
-        int recu = test.recu(10);
-        System.out.println("recu = " + recu);
+        String s = "s.txt";
+        int idx = s.lastIndexOf(".");
+        String substring = s.substring(idx);
+        System.out.println(substring);
 
     }
 }
