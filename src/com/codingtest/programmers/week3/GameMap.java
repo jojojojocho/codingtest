@@ -1,9 +1,7 @@
-package com.codingtest.programmersschool.week3;
+package com.codingtest.programmers.week3;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class GameMap {
     class Pos {

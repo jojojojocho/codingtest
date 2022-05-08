@@ -1,4 +1,4 @@
-package com.codingtest.programmersschool.week2;
+package com.codingtest.programmers.week2;
 
 import java.util.Arrays;
 

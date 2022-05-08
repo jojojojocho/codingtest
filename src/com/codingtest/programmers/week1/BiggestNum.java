@@ -1,4 +1,4 @@
-package com.codingtest.programmersschool.week1;
+package com.codingtest.programmers.week1;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;

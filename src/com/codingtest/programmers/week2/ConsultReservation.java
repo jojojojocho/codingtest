@@ -1,14 +1,10 @@
-package com.codingtest.programmersschool.week2;
+package com.codingtest.programmers.week2;
 
-import com.codingtest.Main;
-
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ConsultReservation {
     public static long time(String string) throws ParseException {

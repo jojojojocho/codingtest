@@ -1,6 +1,5 @@
-package com.codingtest.programmersschool.week1;
+package com.codingtest.programmers.week1;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Budget {

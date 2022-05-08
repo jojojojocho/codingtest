@@ -1,4 +1,4 @@
-package com.codingtest.programmersschool.week1;
+package com.codingtest.programmers.week1;
 
 
 public class Budget2 {
